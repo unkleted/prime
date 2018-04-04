@@ -1,10 +1,9 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use strict;
 use warnings;
 
 my $number;
-
 if ($ARGV[0] && $ARGV[0] =~ /^\d+$/) {
 	$number = $ARGV[0];
 } else {
@@ -22,7 +21,6 @@ if ($number == 1) {
 	print "One is not prime.\n";
 	exit;
 }
-
 if ($number > 2 && $number % 2 == 0) {
 	print "Even numbers larger than 2 aren't prime.\n";
 	exit;
@@ -33,13 +31,12 @@ if ($number > 3 && $number % 3 == 0) {
 }
 
 my $root = $number ** .5;
-my $m;
 for (my $n=5; $n<=$root; $n+=6) {
 	if ($number % $n == 0) {
 		print "$number is divisible by $n.  It is NOT prime.\n";
 		exit;
 	}
-	$m = $n+2;
+	my $m = $n+2;
 	if ($number % $m == 0) {
 		print "$number is divisible by $m.  It is NOT prime.\n";
 		exit;
