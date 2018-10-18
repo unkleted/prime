@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void factor (unsigned long long* n, unsigned long long i) {
+bool factor (unsigned long long* n, unsigned long long i) {
     bool found=false;
     int exp=0;
     while (*n % i == 0) {
@@ -19,6 +19,7 @@ void factor (unsigned long long* n, unsigned long long i) {
         }
         cout << " ";
     }
+    return found;
 }
 int main (int argc, char *argv[]) {
     if (argc < 2) {
@@ -30,10 +31,15 @@ int main (int argc, char *argv[]) {
 
     factor(&num, 2);
     factor(&num, 3);
+    double root = sqrt(num);
+    for (unsigned long long k=5; k <= root; k+=6){
+        if ( factor(&num, k) ){
+	    root = sqrt(num);
+	}
 
-    for (unsigned long long k=5; k <= sqrt(num); k+=6){
-        factor(&num, k);
-        factor(&num, k+2);
+	if ( factor(&num, k+2) ){
+	    root = sqrt(num);
+	}
     }
 
     if (num > 2) {
